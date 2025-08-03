@@ -34,6 +34,7 @@
                 computerMove = 'scissors';
             }
 
+            /*
             //comparision
             if (computerMove === 'rock') {
                 result = 'Tie.';
@@ -42,6 +43,15 @@
             } else if (computerMove === 'scissors') {
                 result = 'You Win.';
             }
+            */
+
+            //using object map for more scalability
+            const outcomes = {
+                rock: 'Tie.',
+                paper: 'You Lose.',
+                scissors: 'You Win.'
+            };
+            result = outcomes[computerMove];
 
             //output in popup
             alert(`You picked rock. Computer picked ${computerMove}. ${result}`);
@@ -68,7 +78,9 @@
                 computerMove = 'scissors';
             }
 
+            /*
             //comparision
+            
             if (computerMove === 'rock') {
                 result = 'You win.';
             } else if (computerMove === 'paper') {
@@ -76,6 +88,17 @@
             } else if (computerMove === 'scissors') {
                 result = 'You Lose.';
             }
+            */
+
+            //using object map for more scalability
+
+            const outcomes = {
+                rock: 'You win.',
+                paper: 'Tie.',
+                scissors: 'You Lose.'
+            };
+
+            result = outcomes[computerMove];
 
             //output in popup
             alert(`You picked paper. Computer picked ${computerMove}. ${result}`);
@@ -102,6 +125,7 @@
                 computerMove = 'scissors';
             }
 
+            /*
             //comparision
             if (computerMove === 'rock') {
                 result = 'You Lose.';
@@ -110,7 +134,15 @@
             } else if (computerMove === 'scissors') {
                 result = 'Tie.';
             }
+            */
 
+            //using object map for more scalability
+            const outcomes = {
+                rock: 'You Lose.',
+                paper: 'You Win.',
+                scissors: 'Tie.'
+            };
+            result = outcomes[computerMove];
             //output in popup
             alert(`You picked scissors. Computer picked ${computerMove}. ${result}`);
         });
