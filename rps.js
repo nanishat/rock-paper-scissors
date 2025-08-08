@@ -12,6 +12,21 @@ document.getElementById('scissors').addEventListener('click', () => {
     playGame('scissors');
 });
 
+document.getElementById('reset-score').addEventListener('click', () => {
+
+    score.wins = 0;
+    score.losses = 0;
+    score.ties = 0;
+    alert(`Score has been reset.`);
+
+});
+
+const score = {
+    wins: 0,
+    losses: 0,
+    ties: 0
+};
+
 //a function to play the game
 function playGame(playerMove) {
 
@@ -22,9 +37,9 @@ function playGame(playerMove) {
         if (computerMove === 'rock') {
             result = 'Tie.';
         } else if (computerMove === 'paper') {
-            result = 'You Lose.';
+            result = 'You lose.';
         } else if (computerMove === 'scissors') {
-            result = 'You Win.';
+            result = 'You win.';
         }
     } else if (playerMove === 'paper') {
         if (computerMove === 'rock') {
@@ -32,19 +47,28 @@ function playGame(playerMove) {
         } else if (computerMove === 'paper') {
             result = 'Tie.';
         } else if (computerMove === 'scissors') {
-            result = 'You Lose.';
+            result = 'You lose.';
         }
     } else if (playerMove === 'scissors') {
         if (computerMove === 'rock') {
-            result = 'You Lose.';
+            result = 'You lose.';
         } else if (computerMove === 'paper') {
-            result = 'You Win.';
+            result = 'You win.';
         } else if (computerMove === 'scissors') {
             result = 'Tie.';
         }
     }
 
-    alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}`);
+    if (result === 'You win.') {
+        score.wins += 1;
+    } else if (result === 'You lose.') {
+        score.losses += 1;
+    } else if (result === 'Tie.') {
+        score.ties += 1;
+    }
+
+    alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}
+Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
 }
 
 //a function to create computer move
