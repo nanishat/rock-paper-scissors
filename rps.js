@@ -17,15 +17,27 @@ document.getElementById('reset-score').addEventListener('click', () => {
     score.wins = 0;
     score.losses = 0;
     score.ties = 0;
+    localStorage.removeItem('score');
     alert(`Score has been reset.`);
 
 });
 
-const score = {
+
+let score = JSON.parse(localStorage.getItem('score')) || {
     wins: 0,
     losses: 0,
     ties: 0
-};
+}
+
+/*
+if (!score) {
+    const score = {
+        wins: 0,
+        losses: 0,
+        ties: 0
+    };
+}
+*/
 
 //a function to play the game
 function playGame(playerMove) {
@@ -66,6 +78,11 @@ function playGame(playerMove) {
     } else if (result === 'Tie.') {
         score.ties += 1;
     }
+
+    //console.log(result);
+
+    //a feature to save the score in localStorage
+    localStorage.setItem('score', JSON.stringify(score));
 
     alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}
 Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
