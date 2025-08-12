@@ -1,5 +1,3 @@
-//
-
 document.getElementById('rock').addEventListener('click', () => {
     playGame('rock');
 });
@@ -20,7 +18,7 @@ document.getElementById('reset-score').addEventListener('click', () => {
         ties: 0
     };
     localStorage.removeItem('score');
-    alert(`Score has been reset.`);
+    updateScoreElement();
 
 });
 
@@ -40,6 +38,8 @@ if (!score) {
     };
 }
 */
+
+updateScoreElement();
 
 //a function to play the game
 function playGame(playerMove) {
@@ -81,13 +81,22 @@ function playGame(playerMove) {
         score.ties += 1;
     }
 
-    //console.log(result);
-
     //a feature to save the score in localStorage
     localStorage.setItem('score', JSON.stringify(score));
 
-    alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}
-Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+    updateScoreElement();
+
+    document.querySelector('.js-result')
+        .innerHTML = result;
+
+    document.querySelector('.js-moves')
+        .innerHTML = `You ${playerMove} - ${computerMove} Computer`;
+
+}
+
+function updateScoreElement() {
+    document.querySelector('.js-score')
+        .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 }
 
 //a function to create computer move
