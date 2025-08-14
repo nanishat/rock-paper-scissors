@@ -1,16 +1,16 @@
-document.getElementById('rock').addEventListener('click', () => {
+document.querySelector('.js-rock').addEventListener('click', () => {
     playGame('rock');
 });
 
-document.getElementById('paper').addEventListener('click', () => {
+document.querySelector('.js-paper').addEventListener('click', () => {
     playGame('paper');
 });
 
-document.getElementById('scissors').addEventListener('click', () => {
+document.querySelector('.js-scissors').addEventListener('click', () => {
     playGame('scissors');
 });
 
-document.getElementById('reset-score').addEventListener('click', () => {
+document.querySelector('.js-reset-score-btn').addEventListener('click', () => {
 
     score = {
         wins: 0,
@@ -19,6 +19,12 @@ document.getElementById('reset-score').addEventListener('click', () => {
     };
     localStorage.removeItem('score');
     updateScoreElement();
+
+    document.querySelector('.js-result')
+        .innerHTML = 'Score has been reset!';
+
+    document.querySelector('.js-moves')
+        .innerHTML = '';
 
 });
 
@@ -90,7 +96,10 @@ function playGame(playerMove) {
         .innerHTML = result;
 
     document.querySelector('.js-moves')
-        .innerHTML = `You ${playerMove} - ${computerMove} Computer`;
+        .innerHTML = `You
+        <img src="images/${playerMove}-emoji.png" alt="playerMove-emoji" class="move-icon">
+        <img src="images/${computerMove}-emoji.png" alt="computerMove-emoji" class="move-icon">
+        Computer`;
 
 }
 

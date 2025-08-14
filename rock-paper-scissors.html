@@ -2,20 +2,27 @@
 
 <head>
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="rps.css">
 </head>
 
 <body>
-    <p>Rock Paper Scissors</p>
+    <p class="title">Rock Paper Scissors</p>
 
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
+    <button class="js-rock move-btn">
+        <img src="images/rock-emoji.png" alt="rock-emoji" class="move-icon">
+    </button>
+    <button class="js-paper move-btn">
+        <img src="images/paper-emoji.png" alt="paper-emoji" class="move-icon">
+    </button>
+    <button class="js-scissors move-btn">
+        <img src="images/scissors-emoji.png" alt="scissors-emoji" class="move-icon">
+    </button>
 
-    <p class="js-result"></p>
+    <p class="js-result result"></p>
     <p class="js-moves"></p>
-    <p class="js-score"></p>
+    <p class="js-score score"></p>
 
-    <button id="reset-score">Reset Score</button>
+    <button class="js-reset-score-btn reset-score-btn">Reset Score</button>
 
     <script src="rps.js"></script>
 </body>
