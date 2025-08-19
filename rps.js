@@ -10,6 +10,10 @@ document.querySelector('.js-scissors').addEventListener('click', () => {
     playGame('scissors');
 });
 
+document.querySelector('.js-auto-play-btn').addEventListener('click', () => {
+    autoPlay();
+});
+
 document.querySelector('.js-reset-score-btn').addEventListener('click', () => {
 
     score = {
@@ -46,6 +50,23 @@ if (!score) {
 */
 
 updateScoreElement();
+
+let isAutoPlaying = false;
+let intervalID;
+
+function autoPlay() {
+    if (!isAutoPlaying) {
+        intervalID = setInterval(function () {
+            //for auto playing we need to pick the player move by computer move
+            const playerMove = pickComputerMove();
+            playGame(playerMove);
+        }, 3000);
+        isAutoPlaying = true;
+    } else {
+        clearInterval(intervalID);
+        isAutoPlaying = false;
+    }
+}
 
 //a function to play the game
 function playGame(playerMove) {
