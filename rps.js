@@ -15,48 +15,25 @@ document.querySelector('.js-auto-play-btn').addEventListener('click', () => {
 });
 
 document.querySelector('.js-reset-score-btn').addEventListener('click', () => {
-
-    score = {
-        wins: 0,
-        losses: 0,
-        ties: 0
-    };
-    localStorage.removeItem('score');
-    updateScoreElement();
-
-    document.querySelector('.js-result')
-        .innerHTML = 'Score has been reset!';
-
-    document.querySelector('.js-moves')
-        .innerHTML = '';
-
+    resetScore();
 });
 
-
+//check for stored score, if not found any it will show default score
 let score = JSON.parse(localStorage.getItem('score')) || {
     wins: 0,
     losses: 0,
     ties: 0
 }
 
-/*
-if (!score) {
-    const score = {
-        wins: 0,
-        losses: 0,
-        ties: 0
-    };
-}
-*/
-
 updateScoreElement();
 
 let isAutoPlaying = false;
 let intervalID;
 
+//an autoplay function, where playerMove is choosed randomly by computerMove
 function autoPlay() {
     if (!isAutoPlaying) {
-        intervalID = setInterval(function () {
+        intervalID = setInterval(() => {
             //for auto playing we need to pick the player move by computer move
             const playerMove = pickComputerMove();
             playGame(playerMove);
@@ -124,6 +101,24 @@ function playGame(playerMove) {
 
 }
 
+//a function to reset all the existing score from display, also from localstore
+function resetScore() {
+    score = {
+        wins: 0,
+        losses: 0,
+        ties: 0
+    };
+    localStorage.removeItem('score');
+    updateScoreElement();
+
+    document.querySelector('.js-result')
+        .innerHTML = 'Score has been reset!';
+
+    document.querySelector('.js-moves')
+        .innerHTML = '';
+}
+
+//a function to display updated score
 function updateScoreElement() {
     document.querySelector('.js-score')
         .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
