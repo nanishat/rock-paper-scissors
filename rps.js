@@ -10,7 +10,9 @@ document.querySelector('.js-scissors').addEventListener('click', () => {
     playGame('scissors');
 });
 
-document.querySelector('.js-auto-play-btn').addEventListener('click', () => {
+const autoPlayBtn = document.querySelector('.js-auto-play-btn');
+
+autoPlayBtn.addEventListener('click', () => {
     autoPlay();
 });
 
@@ -18,10 +20,12 @@ document.body.addEventListener('keydown', (event) => {
     if (event.key === 'r') { playGame('rock') }
     else if (event.key === 'p') { playGame('paper') }
     else if (event.key === 's') { playGame('scissors') }
+    else if (event.key === 'a') { autoPlay() }
+    else if (event.key === 'Backspace') { showResetConfirmation() }
 });
 
 document.querySelector('.js-reset-score-btn').addEventListener('click', () => {
-    resetScore();
+    showResetConfirmation();
 });
 
 //check for stored score, if not found any it will show default score
@@ -45,9 +49,12 @@ function autoPlay() {
             playGame(playerMove);
         }, 3000);
         isAutoPlaying = true;
+        autoPlayBtn.innerHTML = 'Stop Playing';
+
     } else {
         clearInterval(intervalID);
         isAutoPlaying = false;
+        autoPlayBtn.innerHTML = 'Auto Play';
     }
 }
 
@@ -108,20 +115,47 @@ function playGame(playerMove) {
 }
 
 //a function to reset all the existing score from display, also from localstore
-function resetScore() {
-    score = {
-        wins: 0,
-        losses: 0,
-        ties: 0
-    };
-    localStorage.removeItem('score');
-    updateScoreElement();
+function showResetConfirmation() {
+    const displayDecision = document.querySelector('.js-decision');
 
-    document.querySelector('.js-result')
-        .innerHTML = 'Score has been reset!';
+    //generated html on reset score button click
+    const decisionHTML =
+        `
+        Are you sure you want to reset the score?
+        <button class="js-yes-btn decision-display-btn">Yes</button>
+        <button class="js-no-btn decision-display-btn">No</button>
+        `;
 
-    document.querySelector('.js-moves')
-        .innerHTML = '';
+    displayDecision.innerHTML = decisionHTML;
+
+    document.querySelector('.js-yes-btn')
+        .addEventListener('click', () => {
+            resetScore();
+        });
+    document.querySelector('.js-no-btn')
+        .addEventListener('click', () => {
+            displayDecision.innerHTML = '';
+        });
+
+    //core functionality of reset score
+    function resetScore() {
+        score = {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+        localStorage.removeItem('score');
+        updateScoreElement();
+
+        document.querySelector('.js-result')
+            .innerHTML = 'Score has been reset!';
+
+        document.querySelector('.js-moves')
+            .innerHTML = '';
+
+        displayDecision.innerHTML = '';
+    }
+
 }
 
 //a function to display updated score

@@ -35,10 +35,16 @@ body {
 }
 
 .reset-score-btn,
-.auto-play-btn {
+.auto-play-btn,
+.decision-display-btn {
     background-color: white;
     border: none;
     font-size: 15px;
-    padding: 10px 15px;
+    padding: 8px 15px;
     cursor: pointer;
+}
+
+.auto-play-btn,
+.decision-display-btn {
+    margin-left: 10px;
 }
