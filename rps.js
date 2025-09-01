@@ -108,9 +108,9 @@ function playGame(playerMove) {
 
     document.querySelector('.js-moves')
         .innerHTML = `You
-        <img src="images/${playerMove}-emoji.png" alt="playerMove-emoji" class="move-icon">
-        <img src="images/${computerMove}-emoji.png" alt="computerMove-emoji" class="move-icon">
-        Computer`;
+                <img src="images/${playerMove}-emoji.png" alt="playerMove-emoji" class="move-icon">
+                <img src="images/${computerMove}-emoji.png" alt="computerMove-emoji" class="move-icon">
+                Computer`;
 
 }
 
@@ -121,10 +121,10 @@ function showResetConfirmation() {
     //generated html on reset score button click
     const decisionHTML =
         `
-        Are you sure you want to reset the score?
-        <button class="js-yes-btn decision-display-btn">Yes</button>
-        <button class="js-no-btn decision-display-btn">No</button>
-        `;
+                Are you sure you want to reset the score?<br>
+                <button class="js-yes-btn decision-display-btn">Yes</button>
+                <button class="js-no-btn decision-display-btn">No</button>
+                `;
 
     displayDecision.innerHTML = decisionHTML;
 
