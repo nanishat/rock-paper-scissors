@@ -1,37 +1,55 @@
+/* Base styles (mobile-first) */
 body {
     background-color: rgb(25, 25, 25);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    padding: 10px;
+    max-width: 400px;
+    margin: auto;
 }
 
 .title {
-    font-size: 30px;
+    font-size: 6vw;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.move-icon {
-    height: 50px;
-}
-
+/* Buttons */
 .move-btn {
     background-color: transparent;
     border: 3px solid white;
-    height: 120px;
-    width: 120px;
-    border-radius: 60px;
-    margin-right: 10px;
+    height: 20vw;
+    width: 20vw;
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%;
+    margin: 5px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.move-icon {
+    width: 50%;
+    height: auto;
 }
 
 .result {
-    font-size: 25px;
+    font-size: 5vw;
     font-weight: bold;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin: 30px 0 20px 0;
 }
 
 .score {
-    margin-top: 60px;
+    font-size: 4.5vw;
+    margin: 20px 0;
 }
 
 .reset-score-btn,
@@ -39,12 +57,44 @@ body {
 .decision-display-btn {
     background-color: white;
     border: none;
-    font-size: 15px;
-    padding: 8px 15px;
+    font-size: 4vw;
+    padding: 6px 10px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .auto-play-btn,
 .decision-display-btn {
-    margin-left: 10px;
+    margin-left: 5px;
+}
+
+
+@media (min-width: 500px) {
+    .move-btn {
+        width: 120px;
+        height: 120px;
+    }
+
+    .move-icon {
+        width: 50px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .result {
+        font-size: 25px;
+    }
+
+    .score {
+        font-size: 18px;
+    }
+
+    .reset-score-btn,
+    .auto-play-btn,
+    .decision-display-btn {
+        font-size: 15px;
+        padding: 8px 15px;
+    }
 }
